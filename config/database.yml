@@ -1,0 +1,24 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: 5
+  host: <%= ENV.fetch("DATABASE_HOST") { 'localhost' } %>
+  username: postgres
+  password: postgres
+  port: 5432
+
+test:
+  <<: *default
+  database: devise_traning_test
+
+development:
+  <<: *default
+  database: devise_traning_development
+  port: <%= ENV['DATABASE_PORT'] || 5432 %>
+
+
+production:
+  <<: *default
+  database: devise_traning_production
